@@ -8,6 +8,7 @@ LOADERS := --loader:.json=json --loader:.woff2=file
 
 COMMON_FLAGS := --bundle --outdir=$(STATIC) --outbase=src \
 				--asset-names=assets/[ext]/[name]-[hash] \
+				--target=es6 \
                 $(JSX_FLAGS) $(LOADERS)
 
 .PHONY: dev prod clean copy dirs typecheck
