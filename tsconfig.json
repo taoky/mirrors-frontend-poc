@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "target": "es2020",
-        "module": "esnext",
-        "moduleResolution": "bundler",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
         "lib": ["ES2020", "DOM"],
         "jsx": "preserve",
         "jsxFactory": "h",
@@ -12,7 +12,6 @@
         "strict": true,
         "noEmit": true,
         "skipLibCheck": true,
-        "allowImportingTsExtensions": true
     },
     "include": ["src"]
 }

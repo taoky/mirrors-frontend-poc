@@ -3,13 +3,13 @@ import repoRaw from "./data/repo.json";
 import revproxyRaw from "./data/revproxy.json";
 import "./index.css";
 import "./fonts.css";
-import { Header } from "./components/header.index.tsx";
-import { Sidebar } from "./components/sidebar.index.tsx";
-import { Footer } from "./components/footer.index.tsx";
-import { Modal } from "./components/modal.index.tsx";
-import { formatDateTime } from "./utils.ts";
-import { setupSearchFilter } from "./components/script.index/search-filter.ts";
-import { setupModal } from "./components/script.index/modal-init.ts";
+import { Header } from "./components/header.index";
+import { Sidebar } from "./components/sidebar.index";
+import { Footer } from "./components/footer.index";
+import { Modal } from "./components/modal.index";
+import { formatDateTime } from "./utils";
+import { setupSearchFilter } from "./components/script.index/search-filter";
+import { setupModal } from "./components/script.index/modal-init";
 
 interface ProxyRule {
   src: string;

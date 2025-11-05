@@ -1,5 +1,5 @@
 import { h } from "../mini-jsx.js";
-import { modal } from "./modal.index.tsx";
+import { modal } from "./modal.index";
 import newslistRaw from "../data/newslist.json";
 
 interface NewsItem {
