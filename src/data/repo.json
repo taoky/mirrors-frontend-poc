@@ -1,0 +1,12 @@
+[
+    {
+        "mtime": 1710547200,
+        "repo": "test",
+        "help": true
+    },
+    {
+        "mtime": 1710633600,
+        "repo": "sample",
+        "help": false
+    }
+]
