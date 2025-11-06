@@ -1,9 +1,11 @@
 import "./status.css";
 import "./tablesort.css";
 import { h, Fragment, render } from "./mini-jsx.js";
-import { initTableSort } from "./components/script.status/tablesort";
-import { initTableSortFileSizeExtension } from "./components/script.status/tablesort.filesize";
 import { initStatusTable } from "./components/script.status/fetch-status";
+
+// CommonJS imports
+import Tablesort from "./components/script.status/tablesort.js";
+import _ from "./components/script.status/tablesort.filesize.js";
 
 function Nav() {
   return (
@@ -71,6 +73,5 @@ const root = document.getElementById("root");
 if (!root) throw new Error("#root not found");
 render(<App />, root);
 
-initTableSort();
-initTableSortFileSizeExtension();
+(window as any).Tablesort = Tablesort;
 initStatusTable();

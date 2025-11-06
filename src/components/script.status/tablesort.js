@@ -1,6 +1,6 @@
 /* https://github.com/tristen/tablesort/blob/master/src/tablesort.js
    MIT License */
-export function initTableSort() {
+;(function() {
   function Tablesort(el, options) {
     if (!(this instanceof Tablesort)) return new Tablesort(el, options);
 
@@ -284,4 +284,4 @@ export function initTableSort() {
   } else {
     window.Tablesort = Tablesort;
   }
-}
+})();

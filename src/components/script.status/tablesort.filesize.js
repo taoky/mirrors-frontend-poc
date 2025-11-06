@@ -1,6 +1,6 @@
 /* https://github.com/tristen/tablesort/blob/master/src/sorts/tablesort.filesize.js
    MIT License */
-export function initTableSortFileSizeExtension(){
+(function(){
   var compareNumber = function(a, b) {
     a = parseFloat(a);
     b = parseFloat(b);
@@ -64,4 +64,4 @@ export function initTableSortFileSizeExtension(){
 
     return compareNumber(b, a);
   });
-}
+})();
