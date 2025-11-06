@@ -6,7 +6,7 @@ export function Header() {
       <div id="header">
         <ul id="headlinks">
           <li>
-            <a href="/status/" target="_blank">
+            <a href="/status.html" target="_blank">
               Status
             </a>
           </li>

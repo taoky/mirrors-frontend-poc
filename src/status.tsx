@@ -12,7 +12,7 @@ function Nav() {
     <div id="nav">
       <a href="#sync">👉 Sync Status</a>
       <a href="#server">👉 Server Status</a>
-      <a href="https://mirrors.ustc.edu.cn/">👉 Mirrors Index</a>
+      <a href="/">👉 Mirrors Index</a>
     </div>
   );
 }
