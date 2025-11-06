@@ -1,3 +1,6 @@
+import { h } from '../../mini-jsx.js';
+import { formatDateTime } from '../../utils.js';
+
 interface SyncDataItem {
   name: string;
   upstream: string;
@@ -32,26 +35,29 @@ function genError(code: number) {
     143: "The syncing container was terminated by SIGTERM signal",
     "-2": "The syncing container timed out and was thus terminated",
   };
-  if (code == 0) {
-    return "✅";
-  } else {
-    var emoji = "❌";
-    if (code == 25) {
-      emoji = "🧹";
-    }
-    let codeStr = code.toString();
-    var errorInfo = codeStr;
-    if (codeStr in errorInfos)
-        errorInfo += '<span class="comment">' + errorInfos[codeStr] + "</span>";
-    return emoji + " (" + errorInfo + ")";
+  if (code === 0) {
+    return <span>✅</span>;
   }
+
+  let emoji = "❌";
+  if (code === 25) emoji = "🧹";
+
+  const codeStr = code.toString();
+  const errorInfo = errorInfos[codeStr];
+
+  return (
+    <span>
+      {emoji} ({codeStr}
+      {errorInfo && <span class="comment">{errorInfo}</span>})
+    </span>
+  );
 }
 
 function genSyncing(isSyncing: boolean) {
   if (isSyncing === true) {
     return "🔄";
   } else {
-    return "⏸️ ";
+    return "⏸️";
   }
 }
 
@@ -66,38 +72,25 @@ async function fetchSyncStatus() {
 }
 
 function getSyncDataItemTableRow(item: SyncDataItem) {
+  const failed =
+    item.exitCode !== 0 && item.exitCode !== 25 ? "failedSync" : "";
+
   return (
-    "<tr" +
-    (item.exitCode != 0 && item.exitCode != 25 ? ' class="failedSync"' : "") +
-    ">" +
-    "<td>" +
-    item.name +
-    "</td>" +
-    "<td>" +
-    new Date(item.lastSuccess * 1000).toLocaleString() +
-    "</td>" +
-    '<td class="withComment">' +
-    genError(item.exitCode) +
-    "</td>" +
-    "<td>" +
-    new Date(item.updatedAt * 1000).toLocaleString() +
-    "</td>" +
-    "<td>" +
-    item.upstream +
-    "</td>" +
-    `<td class="withComment" data-sort=${String(item.size).padStart(
-      100,
-      "0"
-    )}>` +
-    fileSizeToReadable(item.size) +
-    '<span class="comment">' +
-    item.size.toLocaleString() +
-    " bytes</span>" +
-    "</td>" +
-    "<td>" +
-    genSyncing(item.syncing) +
-    "</td>" +
-    "</tr>"
+    <tr className={failed}>
+      <td>{item.name}</td>
+      <td>{formatDateTime(new Date(item.lastSuccess * 1000))}</td>
+      <td className="withComment">{genError(item.exitCode)}</td>
+      <td>{formatDateTime(new Date(item.updatedAt * 1000))}</td>
+      <td>{item.upstream}</td>
+      <td
+        className="withComment"
+        data-sort={String(item.size).padStart(100, "0")}
+      >
+        {fileSizeToReadable(item.size)}
+        <span className="comment">{item.size} bytes</span>
+      </td>
+      <td>{genSyncing(item.syncing)}</td>
+    </tr>
   );
 }
 
@@ -113,7 +106,7 @@ export async function initStatusTable() {
   try {
     var data = await fetchSyncStatus();
     data.map((item) => {
-      tbody.innerHTML += getSyncDataItemTableRow(item);
+      tbody.appendChild(getSyncDataItemTableRow(item));
     });
     new (window as any).Tablesort(document.getElementById("status")!);
     return;
