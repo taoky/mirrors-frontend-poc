@@ -1,7 +1,7 @@
 OUTDIR := dist
 STATIC := $(OUTDIR)/static
 PUBDIR := public
-ENTRIES := src/index.tsx
+ENTRIES := src/index.tsx src/status.tsx
 
 JSX_FLAGS := --jsx-factory=h --jsx-fragment=Fragment
 LOADERS := --loader:.json=json --loader:.woff2=file
@@ -23,7 +23,9 @@ prod: clean copy dirs typecheck
 copy: $(DIST_FILES)
 	@mkdir -p $(STATIC)
 	@cp -a $(PUBDIR)/index.html $(OUTDIR)/
+	@cp -a $(PUBDIR)/status.html $(OUTDIR)/
 	@cp -ar $(PUBDIR)/static $(OUTDIR)/
+	@cp -ar $(PUBDIR)/data $(OUTDIR)/
 
 typecheck:
 	tsc -p tsconfig.json --noEmit

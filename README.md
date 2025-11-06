@@ -6,7 +6,7 @@ Modified from <https://git.lug.ustc.edu.cn/mirrors/mirrors-index/>.
 
 ## TODO
 
-- [ ] Status page
+- [x] Status page
 
 ## Dependency Requirements
 
