@@ -72,7 +72,7 @@ function App() {
             <input id="revproxy" type="checkbox" />
             <h3>
               <label for="revproxy">
-                反向代理列表
+                反向代理列表{" "}
                 <span>+</span>
                 <span>-</span>
               </label>
