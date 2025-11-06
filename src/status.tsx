@@ -51,6 +51,7 @@ function Grafana() {
             width="49%"
             height="300"
             frameborder="0"
+            loading="lazy"
           ></iframe>
           {index % 2 === 1 && <br />}
         </>
