@@ -74,5 +74,11 @@ const root = document.getElementById("root");
 if (!root) throw new Error("#root not found");
 render(<App />, root);
 
+// Remove unsupported message
+const unsupportedMsg = document.getElementById("unsupported");
+if (unsupportedMsg) {
+  unsupportedMsg.remove();
+}
+
 (window as any).Tablesort = Tablesort;
 initStatusTable();
