@@ -1,4 +1,4 @@
-import { h } from '../mini-jsx.js';
+import { h } from "../mini-framework/mini-core";
 
 export function Header() {
   return (

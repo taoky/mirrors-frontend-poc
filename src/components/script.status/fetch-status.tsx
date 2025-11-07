@@ -1,4 +1,4 @@
-import { h } from '../../mini-jsx.js';
+import { h } from "../../mini-framework/mini-core";
 import { formatDateTime } from '../../utils.js';
 
 interface SyncDataItem {

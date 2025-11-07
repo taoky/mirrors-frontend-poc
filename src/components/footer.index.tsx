@@ -1,4 +1,4 @@
-import { h } from '../mini-jsx.js';
+import { h } from "../mini-framework/mini-core";
 
 export function Footer() {
   return (
@@ -6,10 +6,10 @@ export function Footer() {
       <div id="footercontent">
         <div id="footerleft">
           <p>
-            中国科学技术大学开源软件镜像由{" "}
+            中国科学技术大学开源软件镜像由
             <a href="http://ustcnet.ustc.edu.cn/">
               中国科学技术大学网络信息中心
-            </a>{" "}
+            </a>
             提供支持。
           </p>
           <p>
@@ -19,7 +19,7 @@ export function Footer() {
           <p>
             <a href="https://lug.ustc.edu.cn/">
               中国科学技术大学 Linux 用户协会
-            </a>{" "}
+            </a>
             是由中国科学技术大学在校的 GNU/Linux
             爱好者发起并组成的一个全校性群众团体。成立协会的目的在于联合科大的
             GNU/Linux

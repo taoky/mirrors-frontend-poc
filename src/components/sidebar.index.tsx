@@ -1,4 +1,4 @@
-import { h } from "../mini-jsx.js";
+import { h } from "../mini-framework/mini-core";
 import { modal } from "./modal.index";
 import newslistRaw from "../data/newslist.json";
 
@@ -120,7 +120,7 @@ export function Sidebar() {
               <td>
                 <a href="//cernet.mirrors.ustc.edu.cn/">
                   cernet.mirrors.ustc.edu.cn
-                </a>{" "}
+                </a>
               </td>
               <td>教育网线路</td>
             </tr>

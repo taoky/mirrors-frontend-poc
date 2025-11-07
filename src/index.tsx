@@ -1,4 +1,4 @@
-import { h, Fragment, render } from "./mini-jsx.js";
+import { h, Fragment } from "./mini-framework/mini-core";
 import repoRaw from "./data/repo.json";
 import revproxyRaw from "./data/revproxy.json";
 import "./index.css";
@@ -8,8 +8,6 @@ import { Sidebar } from "./components/sidebar.index";
 import { Footer } from "./components/footer.index";
 import { Modal } from "./components/modal.index";
 import { formatDateTime } from "./utils";
-import { setupSearchFilter } from "./components/script.index/search-filter";
-import { setupModal } from "./components/script.index/modal-init";
 
 interface ProxyRule {
   src: string;
@@ -25,44 +23,48 @@ interface RepoRule {
 const repo = repoRaw as RepoRule[];
 
 function RevproxyTable() {
-  return <table>
-    <tbody>
-      {revproxy.map(({ src, dst }) => (
-        <tr>
-          <td>{src}</td>
-          <td>{dst}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+  return (
+    <table>
+      <tbody>
+        {revproxy.map(({ src, dst }) => (
+          <tr>
+            <td>{src}</td>
+            <td>{dst}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 }
 
 function RepoTable() {
-  return <table class="filelist">
-    <thead>
-      <tr id="firstline">
-        <th id="name">Folder</th>
-        <th class="update">Last Update</th>
-        <th id="help">Help</th>
-      </tr>
-    </thead>
-    <tbody>
-      {repo.map(({ mtime, repo, help }) => (
-        <tr>
-          <td class="filename">
-            <a href={`${repo}/`}>{repo}</a>
-          </td>
-          <td class="filetime">{formatDateTime(new Date(mtime * 1000))}</td>
-          <td class="help">
-            {help ? <a href={`help/${repo}.html`}>Help</a> : ""}
-          </td>
+  return (
+    <table class="filelist">
+      <thead>
+        <tr id="firstline">
+          <th id="name">Folder</th>
+          <th class="update">Last Update</th>
+          <th id="help">Help</th>
         </tr>
-      ))}
-    </tbody>
-  </table>;
+      </thead>
+      <tbody>
+        {repo.map(({ mtime, repo, help }) => (
+          <tr>
+            <td class="filename">
+              <a href={`${repo}/`}>{repo}</a>
+            </td>
+            <td class="filetime">{formatDateTime(new Date(mtime * 1000))}</td>
+            <td class="help">
+              {help ? <a href={`help/${repo}.html`}>Help</a> : ""}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 }
 
-function App() {
+export function App() {
   return (
     <>
       <Header />
@@ -72,8 +74,7 @@ function App() {
             <input id="revproxy" type="checkbox" />
             <h3>
               <label for="revproxy">
-                反向代理列表{" "}
-                <span>+</span>
+                反向代理列表 <span>+</span>
                 <span>-</span>
               </label>
             </h3>
@@ -103,10 +104,3 @@ function App() {
     </>
   );
 }
-
-const root = document.getElementById("root");
-if (!root) throw new Error("#root not found");
-render(<App />, root);
-
-setupSearchFilter();
-setupModal();

@@ -7,6 +7,7 @@ Modified from <https://git.lug.ustc.edu.cn/mirrors/mirrors-index/>.
 ## TODO
 
 - [x] Status page
+- [x] SSG for index page
 
 ## Dependency Requirements
 
@@ -31,4 +32,11 @@ Production build:
 
 ```sh
 make prod
+```
+
+SSG for index page (not recommended; the details of syncing DOM and SSR node are not handled well):
+
+```sh
+make ssr
+node dist/index-ssr.js
 ```

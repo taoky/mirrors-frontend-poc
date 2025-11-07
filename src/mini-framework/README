@@ -1,0 +1,3 @@
+Naive Javascript "framework" about JSX runtime, SSR and hydration.
+
+For real production usage, you might need a serious lightweight framework (nanojsx, or preact if you like React) instead of rolling out manually. Note that SSR requires handling HTML sanitization, etc. which are NOT covered in this mini-framework.

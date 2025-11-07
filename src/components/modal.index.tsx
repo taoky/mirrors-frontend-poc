@@ -1,4 +1,4 @@
-import { h } from "../mini-jsx.js";
+import { h } from "../mini-framework/mini-core";
 import isoinfoRaw from "../data/isoinfo.json";
 
 export interface IsoItem {
@@ -130,14 +130,14 @@ export function Modal({ type }: { type: "app" | "iso" }) {
         </div>
         <div class="modalcontent" id={`${type}modalcontent`}>
           <p>
-            选择{type == "app" ? "开源软件" : "安装发行版"}：{" "}
+            {type == "app" ? "选择开源软件：" : "选择安装发行版："}
             <select
               id={`${type}distro`}
               onchange={() => switchdistro(type)}
             ></select>
           </p>
           <p>
-            选择{type == "app" ? "软件" : "发行版"}版本：{" "}
+            {type == "app" ? "选择软件版本：" : "选择发行版版本："}
             <select id={`${type}version`} onchange={() => switchversion(type)}>
               <option value="none">-</option>
             </select>
@@ -148,7 +148,7 @@ export function Modal({ type }: { type: "app" | "iso" }) {
             class="download_warning"
           ></p>
           <span class="btn" onclick={() => downloadiso(type)}>
-            获取{type == "app" ? "文件" : "ISO"} &gt;
+            {type == "app" ? "获取文件 >" : "获取 ISO >"}
           </span>
         </div>
       </div>

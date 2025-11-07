@@ -1,6 +1,6 @@
 import "./status.css";
 import "./tablesort.css";
-import { h, Fragment, render } from "./mini-jsx.js";
+import { h, Fragment, render } from "./mini-framework/mini-jsx.js";
 import { initStatusTable } from "./components/script.status/fetch-status";
 
 // CommonJS imports
