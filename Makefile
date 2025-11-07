@@ -14,6 +14,10 @@ COMMON_FLAGS_NODE := --bundle --outdir=$(STATIC) --outbase=src \
 					 --asset-names=assets/[ext]/[name]-[hash] \
 					 --target=node20 --define:__NODE__=true --platform=node \
 					 $(JSX_FLAGS) $(LOADERS)
+COMMON_FLAGS_HYDRATE := --bundle --outdir=$(STATIC) --outbase=src \
+						--asset-names=assets/[ext]/[name]-[hash] \
+						--target=es6 --define:__NODE__=true \
+                		$(JSX_FLAGS) $(LOADERS)
 
 .PHONY: dev prod clean copy dirs typecheck ssr
 
@@ -27,7 +31,7 @@ prod: clean copy dirs typecheck
 ssr:
 	@cp -ar $(PUBDIR)/static $(OUTDIR)/
 	esbuild src/index-ssr.jsx $(COMMON_FLAGS_NODE)
-	esbuild src/index-client.tsx --format=esm --define:__HYDRATE__=true $(COMMON_FLAGS)
+	esbuild src/index-client.tsx --format=esm $(COMMON_FLAGS_HYDRATE)
 	mv $(STATIC)/index-ssr.js $(OUTDIR)/index-ssr.js
 
 copy: $(DIST_FILES)

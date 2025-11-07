@@ -1,6 +1,6 @@
 // Get all client side initialization code here, for convenience of SSR.
 
-declare const __HYDRATE__: boolean;
+declare const __NODE__: boolean;
 
 import { setupModal } from "./components/script.index/modal-init";
 import { setupSearchFilter } from "./components/script.index/search-filter";
@@ -11,7 +11,7 @@ import { hydrate } from "./mini-framework/mini-ssr-hydrate";
 import { App } from "./index";
 
 export function initIndexClientSide() {
-  if (__HYDRATE__) {
+  if (__NODE__) {
     console.log("Hydrating...");
     const root = document.getElementById("root");
     if (!root) throw new Error("#root not found");
